@@ -82,19 +82,19 @@ export const Post=(prop)=>{
         })
     }
     return(
-        <div className="my-5 rounded-5 p-0 container d-flex flex-column bg-light border border-5">
-                <div className="d-flex align-items-center justify-content-between bg-dark text-light py-3 rounded-top-5 container-fluid">
+        <div className="my-5 rounded-5 p-0 d-flex flex-column bg-light border border-5">
+                <div className="d-flex align-items-center justify-content-between bg-dark text-light py-3 rounded-top-5">
                     <div className="container d-flex align-items-center py-2">
                         <div className="pfp-container bg-dark rounded-3">
                             <img src={prop.profilepic} className="pfp"></img>
                         </div>
-                        <h5 className="texte ms-3" onClick={()=>setshowprofile(true)}>@{prop.username}</h5>
+                        <h5 className="texte ms-2" onClick={()=>setshowprofile(true)}>@{prop.username}</h5>
                     </div>
-                    <div className="container text-end">
+                    <div className="container-xs text-end">
                         {prop.username===value.user.username && (<button className="border-0 bg-dark rounded" onClick={handleDelete}><DeletePostIcon/></button>)}
                     </div>
                 </div>
-                <div className="container-fluid image-container p-0">
+                <div className="container-xs image-container p-0">
                     <img src={prop.data.image} className="image"></img>
                 </div>
                 <div className="d-flex container mt-3 p-0">

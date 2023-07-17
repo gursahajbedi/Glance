@@ -31,8 +31,8 @@ export default function Register(){
     }
     return(
         <div className="container d-flex align-items-center justify-content-center" style={{height:"100vh"}}>
-            <form className="container p-0 d-flex flex-row align-items-center card" style={{position:"relative", height:"50vh"}}>
-                <div className="d-flex flex-column align-items-center fill-container container">
+            <form className="p-0 d-flex bg-white">
+                <div className="d-flex flex-column align-items-center p-4">
                     <div className="display-3 contianer py-5 px-2"><h1 className="display-1" style={{fontFamily:"'Lobster',cursive"}}>Glance</h1></div>
                     <div className="form-group container">
                         <label className="h2">Email</label>
@@ -56,7 +56,7 @@ export default function Register(){
                         <h5>Already have an account ? <span><NavLink to={"/login"}>login here</NavLink></span></h5>
                     </div>
                 </div>
-                <div className="fill-container container p-0 show">
+                <div className="p-0 show">
                     <img src="registerImage.jpg" className="fill"></img> 
                 </div>
             </form>
