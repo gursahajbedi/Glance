@@ -8,7 +8,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
+      'api/': {
         target: "https://glance-ed2v.onrender.com/",
         changeOrigin: true,
         secure: false,
