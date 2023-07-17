@@ -6,6 +6,11 @@ export default defineConfig({
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
+  root:'src',
+  publicDir:'public',
+  build:{
+    outDir:'build',
+  },
   server: {
     proxy: {
       'api/': {
