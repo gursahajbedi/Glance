@@ -4,7 +4,7 @@ import "./post.css"
 import axios from "axios"
 import { Comment } from "./comment"
 import { Profile } from "./profile"
-import { HeartIcon, HeartIconActive, CommentIcon, DeletePostIcon, HeartIconActiveSmall, HeartIconSmall, CommentIconSmall} from "../../images/svg.jsx"
+import { HeartIcon, HeartIconActive, CommentIcon, DeletePostIcon, HeartIconActiveSmall, HeartIconSmall, CommentIconSmall, DeletePostIconSmall} from "../../images/svg.jsx"
 
 
 export const Post=(prop)=>{
@@ -93,13 +93,13 @@ export const Post=(prop)=>{
                         <h5 className="texte ms-2" onClick={()=>setshowprofile(true)}>@{prop.username}</h5>
                     </div>
                     <div className="container-xs text-end">
-                        {prop.username===value.user.username && (<button className="border-0 bg-dark rounded" onClick={handleDelete}><DeletePostIcon/></button>)}
+                        {prop.username===value.user.username && (<button className="border-0 bg-dark rounded mb-2" onClick={handleDelete}>{width.current>425?(<DeletePostIcon/>):(<DeletePostIconSmall/>)}</button>)}
                     </div>
                 </div>
                 <div className="container-xs image-container p-0">
                     <img src={prop.data.image} className="image"></img>
                 </div>
-                <div className="d-flex container mt-3 p-0">
+                <div className="d-flex container mt-3 p-0 bg-whites">
                     {isliked && (<button className="border-0 p-0" onClick={handleunlike}>{width.current>425?(<HeartIconActive/>):(<HeartIconActiveSmall/>)}</button>)}
                     {!isliked && (<button className="border-0 p-0" onClick={handlelike}>{width.current>425?(<HeartIcon/>):(<HeartIconSmall/>)}</button>)}
                     <button className="border-0" onClick={()=>setshow(true)}>{width.current>425?(<CommentIcon/>):(<CommentIconSmall/>)}</button>

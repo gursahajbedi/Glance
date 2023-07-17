@@ -13,7 +13,7 @@ export const Profile=(prop)=>{
     const [bio,setbio]=useState()
 
     useEffect(()=>{
-        axios.get(`https://glance-ed2v.onrender.com/api/auth/profiles?username=${currentuser}`).then((res)=>{
+        axios.get(`https://glance-ed2v.onrender.com/api/auth/profiles?username=${prop.username}`).then((res)=>{
             setpfp(res.data.profile.profile_pic)
             setbio(res.data.profile.bio)
         })
