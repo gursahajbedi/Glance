@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState, useRef } from "react"
 import {Context} from "../context/context"
 import "./post.css"
 import axios from "axios"
 import { Comment } from "./comment"
 import { Profile } from "./profile"
-import { HeartIcon, HeartIconActive, CommentIcon, DeletePostIcon} from "../../images/svg.jsx"
+import { HeartIcon, HeartIconActive, CommentIcon, DeletePostIcon, HeartIconActiveSmall, HeartIconSmall, CommentIconSmall} from "../../images/svg.jsx"
+
 
 export const Post=(prop)=>{
     const {value}=useContext(Context)
@@ -13,6 +14,7 @@ export const Post=(prop)=>{
     const [like,setlike]=useState(0)
     const [show,setshow]=useState(false)
     const [showprofile,setshowprofile]=useState(false)
+    const width=useRef(window.innerWidth)
     
 
     const findlike=async()=>{
@@ -98,15 +100,15 @@ export const Post=(prop)=>{
                     <img src={prop.data.image} className="image"></img>
                 </div>
                 <div className="d-flex container mt-3 p-0">
-                    {isliked && (<button className="border-0" onClick={handleunlike}><HeartIconActive/></button>)}
-                    {!isliked && (<button className="border-0" onClick={handlelike}><HeartIcon/></button>)}
-                    <button className="border-0" onClick={()=>setshow(true)}><CommentIcon/></button>
+                    {isliked && (<button className="border-0 p-0" onClick={handleunlike}>{width.current>425?(<HeartIconActive/>):(<HeartIconActiveSmall/>)}</button>)}
+                    {!isliked && (<button className="border-0 p-0" onClick={handlelike}>{width.current>425?(<HeartIcon/>):(<HeartIconSmall/>)}</button>)}
+                    <button className="border-0" onClick={()=>setshow(true)}>{width.current>425?(<CommentIcon/>):(<CommentIconSmall/>)}</button>
                 </div>
-                <div className="container-fluid fw-bold fs-5 ms-2 my-2 ">
+                <div className="container-fluid fw-bold my-2 para">
                             {like} likes
                 </div>
                 <div className="container-fluid mb-4">
-                    <div className="h3 text-secondary">@{prop.username} <span className="text-dark">{prop.data.caption}</span></div>
+                    <div className="para fw-bold text-secondary">@{prop.username} <span className="text-dark">{prop.data.caption}</span></div>
                 </div>
                 {show && (<div className="overlay d-flex justify-content-center align-items-center">
                     <Comment postid={prop.data._id} setshow={setshow}/>

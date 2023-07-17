@@ -14,7 +14,6 @@ export default function Home(){
     const [show,setshow]=useState(false)
     const [isloading,setloading]=useState(true)
     const [showprofile,setshowprofile]=useState(false)
-    const [profiledata,setprofiledata]=useState()
 
     const handlelogout=()=>{
         localStorage.removeItem("user")
@@ -26,9 +25,6 @@ export default function Home(){
         axios.get('https://glance-ed2v.onrender.com/api/posts').then((res)=>{
             const posts=res.data.result
             let data=posts.map((res)=>{
-                if(res.profile.user.username===value.user.username){
-                    setprofiledata(res.profile)
-                }
                 // eslint-disable-next-line react/jsx-key
                 return <Post profilepic={res.profile.profile_pic}username={res.profile.user.username} data={res} changeeffect={changeeffect} setloading={setloading}/>
             })
@@ -43,10 +39,10 @@ export default function Home(){
         <div className="">
             <div className="bg-dark container-fluid text-white text-center py-4">
                 <h1 className="display-3" style={{fontFamily:"'Lobster',cursive"}}>Glance</h1>
-                <div className="container-fluid d-flex justify-content-center gap-5 pt-4">
-                    <NavLink to={"/login"} className="text-decoration-none"><h5 className="text text-white" onClick={handlelogout}>Logout</h5></NavLink>
-                    <h5 className="text text-white" onClick={()=>{setshow(true)}}>Create Post</h5>
-                    <h5 className="text text-white" onClick={()=>{setshowprofile(true)}}>Your Profile</h5>
+                <div className="d-flex justify-content-center gap-5 pt-4">
+                    <NavLink to={"/login"} className="text-decoration-none"><div className="texts text-white" onClick={handlelogout}>Logout</div></NavLink>
+                    <div className="texts text-white" onClick={()=>{setshow(true)}}>Create Post</div>
+                    <div className="texts text-white" onClick={()=>{setshowprofile(true)}}>Your Profile</div>
                 </div>
             </div>
 
@@ -57,7 +53,7 @@ export default function Home(){
             {show && <CreatePost username={value.user.username} setshow={setshow} changeeffect={changeeffect} setloading={setloading}/>}
 
             {showprofile && (<div className="overlay d-flex justify-content-center align-items-center">
-                <Profile username={value.user.username} setshowprofile={setshowprofile} data={profiledata}/>
+                <Profile username={value.user.username} setshowprofile={setshowprofile}/>
             </div>)}
         </div>
     )

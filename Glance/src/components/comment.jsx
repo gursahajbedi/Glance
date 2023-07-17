@@ -1,10 +1,14 @@
-import { useContext, useEffect, useState } from "react"
+import {useRef ,useContext, useEffect, useState } from "react"
 import { Context } from "../context/context"
 import axios from 'axios'
-import { DeleteCommentIcon, CloseIcon, SubmitComment } from "../../images/svg"
+import { DeleteCommentIcon, CloseIcon, SubmitComment, DeleteCommentIconSmall } from "../../images/svg"
+import "./comment.css"
+
 
 const UserComment = (prop) =>{
     
+    const width=useRef(window.innerWidth)
+
     const handleCommentdeletion=async()=>{
         prop.setloading(true)
         await axios.patch(`https://glance-ed2v.onrender.com/api/comments/${prop.postid}`,{"username":prop.currentuser,"comment": prop.comment}).then(
@@ -15,11 +19,12 @@ const UserComment = (prop) =>{
             }
         )
     }
+
     return(
-        <div className="d-flex flex-row gap-3 my-2 container">
-            <div className="contiainer h4">{prop.username}</div>
-            <div className="container h4 fw-normal">{prop.comment}</div>
-            {prop.username===prop.currentuser && (<button className="bg-dark border-0" onClick={handleCommentdeletion}><DeleteCommentIcon/></button>)}
+        <div className="d-flex flex-row gap-1 my-2 container">
+            <div className="me-2 mobile fw-bold">{prop.username}</div>
+            <div className="fw-normal mobile">{prop.comment}</div>
+            {prop.username===prop.currentuser && (<button className="bg-dark border-0 delete p-0 ms-2" onClick={handleCommentdeletion}>{width.current>425?(<DeleteCommentIcon/>):(<DeleteCommentIconSmall/>)}</button>)}
         </div>
     )
 }

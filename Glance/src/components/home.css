@@ -10,13 +10,26 @@
     z-index:9;
 }
 
-.text{
-    font-size: 20px;
+.texts{
+    font-size: 25px;
     border-bottom: 1px solid #212529;
     border-color: #212529;
     transition: font-size 0.5s,border-color 1s;
 }
-.text:hover{
-    font-size:25px;
+.texts:hover{
+    font-size:30px;
     border-color:white;
+}
+
+@media only screen and (max-width:425px){
+    .texts{
+        font-size: 15px;
+        border-bottom: 1px solid #212529;
+        border-color: #212529;
+        transition: font-size 0.5s,border-color 1s;
+    }
+    .texts:hover{
+        font-size:20px;
+        border-color:white;
+    }
 }

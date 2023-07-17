@@ -13,6 +13,10 @@ export const Profile=(prop)=>{
     const [bio,setbio]=useState()
 
     useEffect(()=>{
+        axios.get(`https://glance-ed2v.onrender.com/api/auth/profiles?username=${currentuser}`).then((res)=>{
+            setpfp(res.data.profile.profile_pic)
+            setbio(res.data.profile.bio)
+        })
         if (currentuser==prop.username){
             setuser(true)
         }
@@ -36,12 +40,12 @@ export const Profile=(prop)=>{
                 <div>
                     <div className="profile-container conatiner text-center ">
                         <h5>Profile Picture</h5>
-                        <img className="border profile" src={prop.data.profile_pic}></img>
+                        <img className="border profile" src={pfp}></img>
                     </div>
                     <br/>
                     <div className="text-center mt-4 container">
                         <h5>Bio</h5>
-                        <p>" {prop.data.bio} "</p>
+                        <p>" {bio} "</p>
                     </div>
                 </div>
                 )}
