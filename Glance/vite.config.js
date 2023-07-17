@@ -6,10 +6,11 @@ export default defineConfig({
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
-  root:'dist',
-  publicDir:'public',
-  build:{
-    outDir:'dist',
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
+      // include: [/linked-dep/, /node_modules/],
+    }
   },
   server: {
     proxy: {
