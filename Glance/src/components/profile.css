@@ -1,0 +1,10 @@
+.profile-container{
+    height: 15em;
+    width: 15em;
+}
+.profile{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}

@@ -1,0 +1,40 @@
+.pfp-container{
+    height: 5em;
+    width: 5em;
+}
+.pfp{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid gray;
+}
+.image-container{
+    height: 100%;
+    width: 100%;
+}
+.image{
+    height: 100%;
+    width: 100%;
+    object-fit:contain;
+}
+.overlay{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(111,111,111,0.6);
+    z-index:9;
+}
+
+.texte{
+    font-size: 30px;
+    border-bottom: 1px solid #212529;
+    border-color: #212529;
+    transition: font-size 0.5s,border-color 1s;
+}
+.texte:hover{
+    font-size:35px;
+    border-color:white;
+}
