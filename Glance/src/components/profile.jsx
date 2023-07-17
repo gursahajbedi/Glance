@@ -20,7 +20,7 @@ export const Profile=(prop)=>{
 
     const handleEdit=async(e)=>{
         e.preventDefault()
-        await axios.patch(`api/auth/profiles?username=${currentuser}`,{"bio":bio,"profile_pic":pfp}).then((res)=>{
+        await axios.patch(`https://glance-ed2v.onrender.com/api/auth/profiles?username=${currentuser}`,{"bio":bio,"profile_pic":pfp}).then((res)=>{
             console.log(res)
             setedit(false)
         })

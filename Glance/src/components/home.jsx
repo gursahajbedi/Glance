@@ -23,7 +23,7 @@ export default function Home(){
     }
 
     useEffect(()=>{
-        axios.get('/api/posts').then((res)=>{
+        axios.get('https://glance-ed2v.onrender.com/api/posts').then((res)=>{
             const posts=res.data.result
             let data=posts.map((res)=>{
                 if(res.profile.user.username===value.user.username){

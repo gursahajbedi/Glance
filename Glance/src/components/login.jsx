@@ -13,7 +13,7 @@ export default function Login(){
     const handleSubmit=async(e)=>{
         e.preventDefault()
         const body={"username":username,"password":password}
-        await axios.post("api/auth/login",body).then((res)=>{
+        await axios.post("https://glance-ed2v.onrender.com/api/auth/login",body).then((res)=>{
                 if(res.status==200){
                     localStorage.setItem("user",JSON.stringify(res.data))
                     dispatch({payload:res.data,type:'login'})

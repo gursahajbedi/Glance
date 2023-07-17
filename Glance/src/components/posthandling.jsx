@@ -12,7 +12,7 @@ export const CreatePost=(prop)=>{
         t.preventDefault()
         prop.setloading(true)
 
-        await axios.post(`api/posts?username=${prop.username}`,{"caption":caption,"image":image}).then(()=>{
+        await axios.post(`https://glance-ed2v.onrender.com/api/posts?username=${prop.username}`,{"caption":caption,"image":image}).then(()=>{
             prop.changeeffect((prev)=>(!prev))
         })
         prop.setloading(false)

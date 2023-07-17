@@ -7,7 +7,7 @@ const UserComment = (prop) =>{
     
     const handleCommentdeletion=async()=>{
         prop.setloading(true)
-        await axios.patch(`api/comments/${prop.postid}`,{"username":prop.currentuser,"comment": prop.comment}).then(
+        await axios.patch(`https://glance-ed2v.onrender.com/api/comments/${prop.postid}`,{"username":prop.currentuser,"comment": prop.comment}).then(
             ()=>{
                 console.log("Deleted Successfully")
                 prop.seteffect((prev)=>!prev)
@@ -38,7 +38,7 @@ export const Comment = (prop) =>{
     const handleComment=async(t)=>{
         t.preventDefault()
         setloading(true)
-        await axios.post(`api/comments/${postid}`,{"username":currentuser,"comment":comment}).then(
+        await axios.post(`https://glance-ed2v.onrender.com/api/comments/${postid}`,{"username":currentuser,"comment":comment}).then(
             ()=>{
                 console.log("Created Successfully")
                 seteffectchange((prev)=>!prev)
@@ -51,7 +51,7 @@ export const Comment = (prop) =>{
     useEffect(()=>{
         const program=async()=>{
 
-            let data=await axios.get(`api/comments/${postid}`).then(
+            let data=await axios.get(`https://glance-ed2v.onrender.com/api/comments/${postid}`).then(
                 (res)=>{
                     return res.data.comments
                 }
@@ -62,7 +62,7 @@ export const Comment = (prop) =>{
             
             
             data= await Promise.all(data.map(async(item)=>{
-                const userlist=await axios.get('api/auth/login').then((res)=>{
+                const userlist=await axios.get('https://glance-ed2v.onrender.com/api/auth/login').then((res)=>{
                     let users=res.data.users
                     users=users.filter((x)=>{
                         if(x._id===item.user){

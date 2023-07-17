@@ -16,7 +16,7 @@ export default function Register(){
         e.preventDefault()
         const body={"username":username,"password":password,"email":email}
         console.log(body)
-        await axios.post("api/auth/register",body).then((res)=>{
+        await axios.post("https://glance-ed2v.onrender.com/api/auth/register",body).then((res)=>{
                 if(res.status==200){
                     localStorage.setItem("user",JSON.stringify(res.data))
                     dispatch({payload:res.data,type:'login'})

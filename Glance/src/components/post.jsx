@@ -16,7 +16,7 @@ export const Post=(prop)=>{
     
 
     const findlike=async()=>{
-        const result=await axios.get(`api/likes/${prop.data._id}`).then((res)=>{
+        const result=await axios.get(`https://glance-ed2v.onrender.com/api/likes/${prop.data._id}`).then((res)=>{
             console.log('Already liked')
             return res
         })
@@ -24,7 +24,7 @@ export const Post=(prop)=>{
     }
 
     const handleuserlike=async()=>{
-        const user=await axios.get('api/auth/login').then((res)=>{
+        const user=await axios.get('https://glance-ed2v.onrender.com/api/auth/login').then((res)=>{
                 const userfind=res['data']['users']
                 let found=userfind.filter((item)=>{
                     if(item.username===currentuser){
@@ -55,7 +55,7 @@ export const Post=(prop)=>{
     },[value])
 
     const handlelike=async()=>{
-        await axios.post(`api/likes/${prop.data._id}`,{"username":currentuser}).then(async()=>{
+        await axios.post(`https://glance-ed2v.onrender.com/api/likes/${prop.data._id}`,{"username":currentuser}).then(async()=>{
             console.log("Liked")
             setliked(true)
             const result=await findlike()
@@ -65,7 +65,7 @@ export const Post=(prop)=>{
     }
 
     const handleunlike=async()=>{
-        await axios.patch(`api/likes/${prop.data._id}`,{"username":currentuser}).then(async()=>{
+        await axios.patch(`https://glance-ed2v.onrender.com/api/likes/${prop.data._id}`,{"username":currentuser}).then(async()=>{
             console.log("Unliked")
             setliked(false)
             const result=await findlike()
@@ -75,7 +75,7 @@ export const Post=(prop)=>{
 
     const handleDelete=async()=>{
         prop.setloading(true)
-        await axios.delete(`api/posts/${prop.data._id}`).then(()=>{
+        await axios.delete(`https://glance-ed2v.onrender.com/api/posts/${prop.data._id}`).then(()=>{
             console.log("post deleted successfully")
             prop.changeeffect((prev)=>!prev)
             prop.setloading(false)
