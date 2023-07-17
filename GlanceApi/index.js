@@ -26,16 +26,6 @@ app.use('/api/comments',comments)
 
 //for Render
 
-const _dirname=path.dirname("")
-const buildPath=path.join(_dirname , "../Glance/dist")
-app.use(express.static(buildPath))
-
-app.get("*",(req,res)=>{
-    res.sendFile(
-        path.resolve('../Glance/dist/index.html')
-    )
-})
-
 //start
 const start=async()=>{
     try{
