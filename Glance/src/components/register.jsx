@@ -11,9 +11,11 @@ export default function Register(){
     const [password,setPassword]=useState()
     const [err,seterr]=useState()
     const {dispatch}=useContext(Context)
+    const [loading,setloading]=useState(false)
 
     const handleSubmit=async(e)=>{
         e.preventDefault()
+        setloading(true)
         const body={"username":username,"password":password,"email":email}
         console.log(body)
         await axios.post("https://glance-ed2v.onrender.com/api/auth/register",body).then((res)=>{
@@ -28,33 +30,42 @@ export default function Register(){
         ).catch((err)=>{
             seterr(err.response.data.err)
         })
+        setloading(false)
     }
     return(
         <div className="container d-flex align-items-center justify-content-center" style={{height:"100vh"}}>
             <form className="p-0 d-flex bg-white">
                 <div className="d-flex flex-column align-items-center p-4">
                     <div className="display-3 contianer py-5 px-2"><h1 className="display-1" style={{fontFamily:"'Lobster',cursive"}}>Glance</h1></div>
-                    <div className="form-group container">
-                        <label className="h2">Email</label>
-                        <input id='email' type='email' onChange={(e)=>{setEmail(e.target.value)}} className="form-control border border-dark"/>
-                    </div>
-                    <div className="form-group container mt-3">
-                        <label className="h2">Username</label>
-                        <input id='username' type='text' onChange={(e)=>{setUsername(e.target.value)}} className="form-control border border-dark"/>
-                    </div>
-                    <div className="form-group container mt-3">
-                        <label className="h2">Password</label>
-                        <input id='username' type='password' onChange={(e)=>{setPassword(e.target.value)}} className="form-control border border-dark"/>
-                    </div>
-                    <div className="text-danger fs-5 px-3">
-                        {err}
-                    </div>
-                    <div className="container py-2">
-                        <button className="btn btn-primary mt-4" onClick={handleSubmit} type="submit">Register</button>
-                    </div>
-                    <div className="container pt-3">
-                        <h5>Already have an account ? <span><NavLink to={"/login"}>login here</NavLink></span></h5>
-                    </div>
+                    {!loading?(
+                        <div>
+                            <div className="form-group container">
+                                <label className="h2">Email</label>
+                                <input id='email' type='email' onChange={(e)=>{setEmail(e.target.value)}} className="form-control border border-dark"/>
+                            </div>
+                            <div className="form-group container mt-3">
+                                <label className="h2">Username</label>
+                                <input id='username' type='text' onChange={(e)=>{setUsername(e.target.value)}} className="form-control border border-dark"/>
+                            </div>
+                            <div className="form-group container mt-3">
+                                <label className="h2">Password</label>
+                                <input id='username' type='password' onChange={(e)=>{setPassword(e.target.value)}} className="form-control border border-dark"/>
+                            </div>
+                            <div className="text-danger fs-5 px-3">
+                                {err}
+                            </div>
+                            <div className="container py-2">
+                                <button className="btn btn-primary mt-4" onClick={handleSubmit} type="submit">Register</button>
+                            </div>
+                            <div className="container pt-3">
+                                <h5>Already have an account ? <span><NavLink to={"/login"}>login here</NavLink></span></h5>
+                            </div>
+                        </div>
+                    ):(
+                        <div className="spinner-border container" role="status">
+                            <span className="sr-only"></span>
+                        </div>
+                    )}
                 </div>
                 <div className="p-0 show">
                     <img src="registerImage.jpg" className="fill"></img> 

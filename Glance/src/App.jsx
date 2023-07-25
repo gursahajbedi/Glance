@@ -11,7 +11,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={value.user?<Navigate to={"/home"}/>:<Navigate to={"/login"}/>}/>
+          <Route path="/" element={!value.user?<Navigate to={"/home"}/>:<Navigate to={"/login"}/>}/>
           <Route path='/login' element={!value.user?<Login/>:<Navigate to={"/home"}/>}/>
           <Route path='/register' element={!value.user?<Register/>:<Navigate to={"/home"}/>}/>
           <Route path='/home' element={value.user?<Home/>:<Navigate to={'/login'}/>}/>
